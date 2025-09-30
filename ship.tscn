@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnxrl5opbbxwk"]
+
+[ext_resource type="Script" uid="uid://cpapb8lsr6y5u" path="res://ship.gd" id="1_4cq66"]
+[ext_resource type="Texture2D" uid="uid://eg4ntqpwp118" path="res://assets/ship.svg" id="1_l3rv8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3rv8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l3rv8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ship" type="Area2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_4cq66")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l3rv8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -12.666667, 11.333334, 8.666667, 8.666667, 12.666667, 5.3333335, 12.666667, 0, 8.666667, -5.3333335, 12.666667, -8.666667, 12.666667, -11.333334, 8.666667)

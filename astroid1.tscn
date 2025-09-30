@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqjdtsu31icty"]
+
+[ext_resource type="Texture2D" uid="uid://buikdkyhhudak" path="res://assets/astroid1.svg" id="1_71ho6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k183w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_71ho6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="astroid1" type="Area2D"]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k183w")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-38, -30, -13, -45, 5, -42, 10, -6, 20, -44, 34, -37, 40, 24, 8, 46, -43, 20, -30, -8)
