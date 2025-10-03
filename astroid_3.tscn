@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://chywdk8ku5hn6"]
+[gd_scene load_steps=4 format=3 uid="uid://chywdk8ku5hn6"]
 
 [ext_resource type="Texture2D" uid="uid://db3i2jvqb07l5" path="res://assets/astroid3.svg" id="1_hmbq5"]
+[ext_resource type="Script" uid="uid://ck2l1jskc1wrl" path="res://astroid.gd" id="1_o1mxw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o1mxw"]
 animations = [{
@@ -13,10 +14,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="astroid3" type="Area2D"]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_o1mxw")
+[node name="astroid3" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 3
+gravity_scale = 0.0
+linear_damp_mode = 1
+script = ExtResource("1_o1mxw")
+metadata/_edit_group_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-26, -30, -10, -22, -4, -41, 19, -43, 22, -35, 34, -32, 39, -14, 30, -10, 24, 6, 39, 13, 31, 26, 41, 41, 28, 42, 9, 34, -26, 42, -38, 37, -35, 24, -24, 14, -12, -7, -31, -4, -39, -18)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o1mxw")

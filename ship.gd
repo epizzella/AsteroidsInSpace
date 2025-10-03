@@ -52,16 +52,20 @@ func shoot():
 		var b = bullet_scene.instantiate()
 		var angle = rotation - (PI / 2)
 		var vec = Vector2(cos(angle), sin(angle))
-		b.linear_velocity = vec * 900
 		b.position = position + (vec * 15)
+		b.apply_central_impulse(vec * 800)
 		$Timer.start()
 		add_sibling(b)
 		bullet_ready = false 
 
 
 func _on_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	print("Ship body entered!")
 
 
 func _on_timer_timeout() -> void:
 	bullet_ready = true
+
+
+func _on_area_entered(area: Area2D) -> void:
+	print("Ship area entered!")

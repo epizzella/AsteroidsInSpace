@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c86on8isyc786"]
+[gd_scene load_steps=4 format=3 uid="uid://c86on8isyc786"]
 
+[ext_resource type="Script" uid="uid://ck2l1jskc1wrl" path="res://astroid.gd" id="1_8wnea"]
 [ext_resource type="Texture2D" uid="uid://qkhdbb1thupn" path="res://assets/astroid4.svg" id="1_ky0hy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wnea"]
@@ -13,7 +14,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="astroid4" type="Area2D"]
+[node name="astroid4" type="RigidBody2D"]
+collision_layer = 32
+collision_mask = 3
+gravity_scale = 0.0
+linear_damp_mode = 1
+script = ExtResource("1_8wnea")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8wnea")
