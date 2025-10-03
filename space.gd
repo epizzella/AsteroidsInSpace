@@ -18,11 +18,10 @@ func _process(delta: float) -> void:
 
 
 func spawn_astroids():
-	spawn_astroid(1)
-	#for num in range(0, 4):
-		#spawn_astroid(1)
-		#spawn_astroid(0.5)
-		#spawn_astroid(0.25)
+	for num in range(0, 4):
+		spawn_astroid(1)
+		spawn_astroid(0.5)
+		spawn_astroid(0.25)
 		
 
 func spawn_astroid(size: float):
@@ -30,7 +29,4 @@ func spawn_astroid(size: float):
 	astroid.position.x = randi_range(0, screen_size.x)
 	astroid.position.y = randi_range(0, screen_size.y)
 	astroid.set_my_scale(size)
-	var angle = randf_range(0, TAU)
-	astroid.apply_central_impulse(Vector2.from_angle(angle) * 150)
 	add_child(astroid)
-	pass

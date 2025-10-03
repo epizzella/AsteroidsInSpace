@@ -60,7 +60,8 @@ func shoot():
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("Ship body entered!")
+	if body is Asteroid:
+		print("Ship body entered!")
 
 
 func _on_timer_timeout() -> void:

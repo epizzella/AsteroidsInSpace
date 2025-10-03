@@ -17,5 +17,5 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ship" parent="." instance=ExtResource("1_d5lh8")]
-position = Vector2(311, 512)
+position = Vector2(628, 604)
 scale = Vector2(1, 1)
