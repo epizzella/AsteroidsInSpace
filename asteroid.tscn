@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqjdtsu31icty"]
+
+[ext_resource type="Texture2D" uid="uid://buikdkyhhudak" path="res://assets/astroid1.svg" id="1_8gfwb"]
+[ext_resource type="Script" uid="uid://ck2l1jskc1wrl" path="res://asteroid.gd" id="1_mc61r"]
+[ext_resource type="Texture2D" uid="uid://i3dkj46jsxph" path="res://assets/astroid2.svg" id="2_mc61r"]
+[ext_resource type="Texture2D" uid="uid://db3i2jvqb07l5" path="res://assets/astroid3.svg" id="3_lu1tu"]
+[ext_resource type="Texture2D" uid="uid://qkhdbb1thupn" path="res://assets/astroid4.svg" id="4_tw4ug"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k183w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8gfwb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1lkd5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mc61r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhlnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lu1tu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_db3ve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tw4ug")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="astroid" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 3
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp_mode = 1
+script = ExtResource("1_mc61r")
+metadata/_edit_group_ = true
+
+[node name="CollisionA1" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-38, -30, -13, -45, 5, -42, 10, -6, 20, -44, 34, -37, 40, 24, 8, 46, -43, 20, -30, -8)
+disabled = true
+
+[node name="AnimatedSpriteA1" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_k183w")
+
+[node name="CollisionA2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-31, -41, -12, -34, 7, -45, 42, -24, 34, 12, 40, 42, 27, 44, -9, 37, -34, 42, -41, 36, -34, 19, -32, 3, -42, -21)
+disabled = true
+
+[node name="AnimatedSpriteA2" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_1lkd5")
+
+[node name="CollisionA3" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-26, -30, -10, -22, -4, -41, 19, -43, 22, -35, 34, -32, 39, -14, 30, -10, 24, 6, 39, 13, 31, 26, 41, 41, 28, 42, 9, 34, -26, 42, -38, 37, -35, 24, -24, 14, -12, -7, -31, -4, -39, -18)
+disabled = true
+
+[node name="AnimatedSpriteA3" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_qhlnb")
+
+[node name="CollisionA4" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-37, -41, -17, -32, 25, -40, 43, -4, 40, 41, 26, 37, 23, 24, -11, 40, -38, 32, -35, 12, -25, 7, -43, -35)
+disabled = true
+
+[node name="AnimatedSpriteA4" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_db3ve")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

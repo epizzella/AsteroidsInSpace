@@ -54,9 +54,9 @@ func shoot():
 		var vec = Vector2(cos(angle), sin(angle))
 		b.position = position + (vec * 15)
 		b.apply_central_impulse(vec * 800)
-		$Timer.start()
 		add_sibling(b)
 		bullet_ready = false 
+		$Timer.start()
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -65,7 +65,3 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	bullet_ready = true
-
-
-func _on_area_entered(area: Area2D) -> void:
-	print("Ship area entered!")

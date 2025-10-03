@@ -1,6 +1,6 @@
 extends Node
 
-@export var astroids: Array[PackedScene]
+@export var astroids: PackedScene
 
 var screen_size
 
@@ -26,15 +26,11 @@ func spawn_astroids():
 		
 
 func spawn_astroid(size: float):
-	var a_index = randi_range(0, astroids.size()-1)
-	var astroid = astroids[0].instantiate()
-	var rand_x = randi_range(0, screen_size.x)
-	var rand_y = randi_range(0, screen_size.y)
-	astroid.position.x = rand_x
-	astroid.position.y = rand_y
-	astroid.find_child("AnimatedSprite2D").set_scale(Vector2(size, size))
-	astroid.find_child("CollisionPolygon2D").set_scale(Vector2(size, size))
-	
+	var astroid = astroids.instantiate()
+	astroid.position.x = randi_range(0, screen_size.x)
+	astroid.position.y = randi_range(0, screen_size.y)
+	astroid.set_my_scale(size)
 	var angle = randf_range(0, TAU)
 	astroid.apply_central_impulse(Vector2.from_angle(angle) * 150)
 	add_child(astroid)
+	pass
