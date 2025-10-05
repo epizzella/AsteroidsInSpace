@@ -2,8 +2,11 @@ extends Area2D
 
 @export var bullet_scene: PackedScene
 
-var velocity: Vector2 = Vector2.ZERO
-var screen_size
+var velocity := Vector2.ZERO
+var screen_size: Vector2
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision: CollisionPolygon2D = $CollisionPolygon2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,8 +16,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var rot = 0.0
-	var speed = 0.0
+	var rot := 0.0
+	var speed := 0.0
 	if Input.is_action_pressed("increase_speed"):
 		speed = 8
 	if Input.is_action_pressed("rotate_left"):
@@ -34,7 +37,7 @@ func _process(delta: float) -> void:
 	else:
 		velocity += Vector2(cos(angle), sin(angle)) * speed * delta
 		# speed limit
-		velocity = velocity.limit_length(7)
+		velocity = velocity.limit_length(6)
 	
 	position += velocity
 	
@@ -51,7 +54,7 @@ func shoot():
 	if bullet_ready:
 		var b = bullet_scene.instantiate()
 		var angle = rotation - (PI / 2)
-		var vec = Vector2(cos(angle), sin(angle))
+		var vec = Vector2.from_angle(angle)
 		b.position = position + (vec * 15)
 		b.apply_central_impulse(vec * 800)
 		add_sibling(b)
@@ -63,6 +66,18 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Asteroid:
 		print("Ship body entered!")
 
+
+func spawn(new_position: Vector2):
+	position = new_position
+	rotation = 0
+	sprite.show()
+	collision.disabled = false
+
+
+func despawn():
+	sprite.hide()
+	collision.disabled = true
+	
 
 func _on_timer_timeout() -> void:
 	bullet_ready = true

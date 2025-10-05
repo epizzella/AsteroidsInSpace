@@ -14,12 +14,19 @@ var screen_size
 
 @onready var astroids: PackedScene = preload("res://asteroid.tscn")
 
-var _myCollision: CollisionPolygon2D
-var _mySprite: AnimatedSprite2D
+signal bullet_hit(position: Vector2, size: float)
+
+var _myCollision: CollisionPolygon2D = collision_a_1
+var _mySprite: AnimatedSprite2D = animated_sprite_a_1
 var _scale := 1.0
 
 enum AstroidType {A1, A2, A3, A4}
 enum Speed {FAST = 150, MED = 100, SLOW = 75}
+
+
+func set_my_scale(my_scale: float):
+	_scale = my_scale
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,9 +47,6 @@ func _ready() -> void:
 		AstroidType.A4:
 			_myCollision = collision_a_4
 			_mySprite = animated_sprite_a_4
-		_:
-			_myCollision = collision_a_1
-			_mySprite = animated_sprite_a_1
 
 	# Enable collisions, visibility and set the scale
 	_mySprite.visible = true
@@ -66,6 +70,7 @@ func _ready() -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	# Screen wrap
 	var x := 0.0
 	var y := 0.0
 
@@ -84,27 +89,5 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is Bullet:
-		var my_scale := 1.0
-		match _scale:
-			1.0:
-				my_scale = 0.5
-				_spawn_astroid(my_scale)
-				_spawn_astroid(my_scale)
-			0.5:
-				my_scale = 0.25
-				_spawn_astroid(my_scale)
-				_spawn_astroid(my_scale)
-			0.25:
-				pass
+		bullet_hit.emit(position, _scale)
 		queue_free()
-
-
-func _spawn_astroid(my_scale: float):
-	var astroid = astroids.instantiate()
-	astroid.position.x = position.x
-	astroid.position.y = position.y 
-	astroid.set_my_scale(my_scale)
-	call_deferred("add_sibling",astroid)
-
-func set_my_scale(my_scale: float):
-	_scale = my_scale
