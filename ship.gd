@@ -8,6 +8,8 @@ var screen_size: Vector2
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionPolygon2D = $CollisionPolygon2D
 
+signal asteroid_collision()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -65,6 +67,7 @@ func shoot():
 func _on_body_entered(body: Node2D) -> void:
 	if body is Asteroid:
 		print("Ship body entered!")
+		asteroid_collision.emit()
 
 
 func spawn(new_position: Vector2):

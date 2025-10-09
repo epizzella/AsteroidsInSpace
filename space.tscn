@@ -19,3 +19,5 @@ color = Color(0, 0, 0, 1)
 [node name="ship" parent="." instance=ExtResource("1_d5lh8")]
 position = Vector2(395, 564)
 scale = Vector2(1, 1)
+
+[connection signal="asteroid_collision" from="ship" to="." method="_on_ship_asteroid_collision"]

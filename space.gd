@@ -1,12 +1,12 @@
 extends Node
 
 @export var astroids: PackedScene
-
 @onready var ship: Area2D = $ship
 
 var screen_size: Vector2
 var ship_start: Vector2
 var points := 0
+var lives := 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,3 +53,18 @@ func _handle_asteroid_hit(a_position: Vector2, a_scale: float):
 			spawn_astroid(my_scale, a_position)
 	
 	points += 1
+
+
+func _on_ship_asteroid_collision() -> void:
+	if( lives > 1):
+		lives -= 1
+		ship.hide()
+		ship.position = ship_start
+		ship.show()
+	else:
+		_game_over()
+
+
+func _game_over():
+	print("Game Over or whatever")
+	ship.hide()		
