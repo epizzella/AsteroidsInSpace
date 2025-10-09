@@ -1,0 +1,1 @@
+This project's purpose was for me to familarize myself with Godot. While very rough and not even totally finished, I beleieve I've learned as much as I can from this project. Time to move on to more complex Godot/GameDev topics =)
